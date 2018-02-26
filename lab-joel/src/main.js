@@ -31,7 +31,7 @@ class SearchForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.props.get_set_app);
+    console.log(this.props);
     this.props.update_state(this.state.val, this.state.limit);
   }
 
@@ -74,11 +74,12 @@ class Results extends React.Component {
       <div className="results">
         {this.props.results ?
           <section className="results-data">
+            {console.log(this.props)}
             <h2>{this.props.results.data.children[0].data.subreddit}</h2>
             <ul>
               {this.props.results.data.children.map((a, b) => {
                 return <li key={b}>
-                  <a href={a.data.url}><h3>{a.data.title}</h3><p>Ups: {a.data.ups}</p></a>
+                  <a href={a.data.url}><h3>{a.data.title}</h3></a>
                 </li>;
               })
               }
@@ -108,6 +109,7 @@ class App extends React.Component {
       results:null,
       searchError: null,
     };
+    console.log(this.state);
     this.searchApi = this.searchApi.bind(this);
     this.updateState = this.updateState.bind(this);
   }
